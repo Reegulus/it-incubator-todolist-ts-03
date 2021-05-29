@@ -17,16 +17,21 @@ type PropsType = {
 
 export function Todolist(props: PropsType) {
     let [title, setTitle] = useState("")
+    const addTask = () => {
+        props.addTask(title)
+        setTitle("")
+    }
     return <div>
         <h3>{props.title}</h3>
         <div>
-            <input value={title} onChange={(e) => {
+            <input
+                value={title}
+                onChange={(e) => {
                 setTitle(e.currentTarget.value)
-            }}/>
-            <button onClick={() => {
-                props.addTask(title)
-                setTitle("")
-            }}>+
+            }}
+                onKeyPress={ (e) => {if (e.charCode === 13){addTask()}}}
+            />
+            <button onClick={addTask}>+
             </button>
         </div>
         <ul>

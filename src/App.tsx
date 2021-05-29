@@ -13,8 +13,13 @@ function App() {
         { id: v1(), title: "ReactJS", isDone: false },
         { id: v1(), title: "Rest API", isDone: false },
         { id: v1(), title: "GraphQL", isDone: false },
-    ]);
 
+    ]);
+function addTask() {
+    let task = {id: v1(), title: "N", isDone: false}
+    let newTask = [task, ...tasks]
+    setTasks(newTask)
+}
     function removeTask(id: string) {
         let filteredTasks = tasks.filter(t => t.id !== id);
         setTasks(filteredTasks);
@@ -38,6 +43,7 @@ function App() {
     return (
         <div className="App">
             <Todolist title="What to learn"
+                      addTask={addTask}
                       tasks={tasksForTodolist}
                       removeTask={removeTask}
                       changeFilter={changeFilter} />
